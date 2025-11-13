@@ -1,0 +1,43 @@
+# Build outputs
+out/
+*.o
+*.a
+*.so
+*.ko
+*.mod
+*.mod.c
+*.order
+*.symvers
+*.d
+*.dtb
+*.dtbo
+*.xz
+*.gz
+*.zip
+*.tgz
+*.tar
+*.lz4
+*.tmp
+
+# Kernel images
+vmlinux
+vmlinux.*
+Image
+Image.gz
+Image-dtb
+Image.lz4
+
+# Toolchains
+clang/
+prebuilts/
+toolchain/
+gcc/
+llvm/
+
+# ccache
+ccache/
+*.ccache
+
+# Diff patches
+*.diff
+*.patch
