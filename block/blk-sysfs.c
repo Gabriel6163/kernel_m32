@@ -1284,6 +1284,10 @@ int blk_register_queue(struct gendisk *disk)
 	struct device *dev = disk_to_dev(disk);
 	struct request_queue *q = disk->queue;
 
+	/* Hardcoded RQ_AFFINITY=2 for eMMC latency */
+	set_bit(QUEUE_FLAG_SAME_COMP, &q->queue_flags);
+	set_bit(QUEUE_FLAG_SAME_FORCE, &q->queue_flags);
+
 	if (WARN_ON(!q))
 		return -ENXIO;
 
@@ -1350,6 +1354,10 @@ unlock:
 void blk_unregister_queue(struct gendisk *disk)
 {
 	struct request_queue *q = disk->queue;
+
+	/* Hardcoded RQ_AFFINITY=2 for eMMC latency */
+	set_bit(QUEUE_FLAG_SAME_COMP, &q->queue_flags);
+	set_bit(QUEUE_FLAG_SAME_FORCE, &q->queue_flags);
 
 	if (WARN_ON(!q))
 		return;
