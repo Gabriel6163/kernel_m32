@@ -45,6 +45,7 @@
  * enum ZSTD_ErrorCode - zstd error codes
  *
  * Functions that return size_t can be checked for errors using ZSTD_isError()
+const char *ZSTD_getErrorName(size_t code);
  * and the ZSTD_ErrorCode can be extracted using ZSTD_getErrorCode().
  */
 typedef enum {
@@ -103,6 +104,7 @@ static __attribute__((unused)) unsigned int ZSTD_isError(size_t code)
  * Return:          The ZSTD_ErrorCode corresponding to the functionResult or 0
  *                  if the functionResult isn't an error.
  */
+const char *ZSTD_getErrorName(size_t code);
 static __attribute__((unused)) ZSTD_ErrorCode ZSTD_getErrorCode(
 	size_t functionResult)
 {

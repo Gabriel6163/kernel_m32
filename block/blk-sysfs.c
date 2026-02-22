@@ -1295,6 +1295,19 @@ int blk_register_queue(struct gendisk *disk)
 		  "%s is registering an already registered queue\n",
 		  kobject_name(&dev->kobj));
 	queue_flag_set_unlocked(QUEUE_FLAG_REGISTERED, q);
+/* --- SYSARCHITECT I/O MATRIX (MT6769V / eMMC 5.1) --- */
+/* 1. RQ_AFFINITY=2 (Force dispatch to requesting CPU core) */
+set_bit(QUEUE_FLAG_SAME_COMP, &q->queue_flags);
+set_bit(QUEUE_FLAG_SAME_FORCE, &q->queue_flags);
+/* 2. IOSTATS=0 (Bypass diskstats tracking overhead) */
+clear_bit(QUEUE_FLAG_IO_STAT, &q->queue_flags);
+/* 3. ADD_RANDOM=0 (Bypass IRQ entropy harvesting) */
+clear_bit(QUEUE_FLAG_ADD_RANDOM, &q->queue_flags);
+/* 4. NOMERGE=2 (Disable elevator merge logic for random I/O) */
+set_bit(QUEUE_FLAG_NOMERGES, &q->queue_flags);
+/* 5. NR_REQUESTS=64 (2x CQE Depth to prevent controller starvation) */
+q->nr_requests = 64;
+/* --------------------------------------------------- */
 
 	/*
 	 * SCSI probing may synchronously create and destroy a lot of

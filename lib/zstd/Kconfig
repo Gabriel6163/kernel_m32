@@ -1,0 +1,10 @@
+config ZSTD_COMPRESS
+	tristate
+
+config ZSTD_DECOMPRESS
+	tristate
+
+config ZSTD_LIB
+	select ZSTD_COMPRESS
+	select ZSTD_DECOMPRESS
+	tristate

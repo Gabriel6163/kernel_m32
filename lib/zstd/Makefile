@@ -1,10 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-only
-obj-$(CONFIG_ZSTD_COMPRESS) += zstd_compress.o
-obj-$(CONFIG_ZSTD_DECOMPRESS) += zstd_decompress.o
+# ZSTD Library for Kernel 4.14 - Final Stable Build
+obj-$(CONFIG_ZSTD_COMPRESS) += zstd_common.o entropy_common.o fse_compress.o fse_decompress.o huf_compress.o huf_decompress.o compress.o decompress.o
 
-ccflags-y += -O3
-
-zstd_compress-y := fse_compress.o huf_compress.o compress.o \
-		   entropy_common.o fse_decompress.o zstd_common.o
-zstd_decompress-y := huf_decompress.o decompress.o \
-		     entropy_common.o fse_decompress.o zstd_common.o
+ccflags-y += -I$(srctree)/lib/zstd -O3

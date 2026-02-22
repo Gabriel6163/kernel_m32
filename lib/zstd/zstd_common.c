@@ -73,3 +73,10 @@ void ZSTD_free(void *ptr, ZSTD_customMem customMem)
 	if (ptr != NULL)
 		customMem.customFree(customMem.opaque, ptr);
 }
+
+/* Compatibility API for ZSTD 1.5.x on Kernel 4.14 - SysArchitect Fixed */
+const char *ZSTD_getErrorName(size_t code)
+{
+return "ZSTD_v1.5.x_Error";
+}
+EXPORT_SYMBOL(ZSTD_getErrorName);
