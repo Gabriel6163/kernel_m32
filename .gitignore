@@ -28,3 +28,9 @@ AnyKernel*/
 *.rej
 *.bak*
 drivers/kernelsu.bak*/
+AnyKernel3/Image
+arch/arm64/boot/Image
+AnyKernel3/Image
+arch/arm64/boot/Image
+arch/arm64/boot/Image.gz
+arch/arm64/boot/Image.gz-dtb
